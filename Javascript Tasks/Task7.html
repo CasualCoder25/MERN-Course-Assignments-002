@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Task7</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script>
+      function start() {
+        if (elementid !== null) {
+          return elementid
+        } else {
+          elementid = setInterval(() => {
+            left = parseInt(
+              document.getElementById("animated-image").style.left,
+              10
+            )
+            if (left < screen.availWidth && direction === 0) {
+              document.getElementById("animated-image").style.transform = "none"
+              document.getElementById("animated-image").style.left =
+                left + 4 + "px"
+            } else if (left + 300 > 0 && direction === 1) {
+              document.getElementById("animated-image").style.transform =
+                "scale(-1,1)"
+              document.getElementById("animated-image").style.left =
+                left - 4 + "px"
+            } else if (left >= screen.availHeight && direction === 0) {
+              direction = 1
+            } else if (left + 300 <= 0 && direction === 1) {
+              direction = 0
+            }
+          }, 1)
+          return elementid
+        }
+      }
+      function stop(elementid) {
+        if (elementid !== null) {
+          clearInterval(elementid)
+        }
+        return null
+      }
+      let elementid = null
+      let direction = 0
+      startanimation = function () {
+        elementid = start()
+      }
+      endanimation = function () {
+        elementid = stop(elementid)
+      }
+    </script>
+  </head>
+  <body>
+    <img
+      style="height: 250px; width: 300px; position: relative; left: 0px"
+      id="animated-image"
+      src="data:image/png;base64,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"
+    />
+    <div class="row justify-content-center align-items-center">
+      <button
+        class="col-8 col-md-1 btn btn-primary rounded m-2"
+        onclick="startanimation()"
+      >
+        Start
+      </button>
+      <button
+        class="col-8 col-md-1 btn btn-primary rounded m-2"
+        onclick="endanimation()"
+      >
+        Stop
+      </button>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
